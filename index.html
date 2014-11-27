@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="icon" href="images/cart.png">
+  <title>Shopping Cart</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/theme.css">
+</head>
+
+<body>
+  <section id="items-list" class="container">
+    <div class="row">
+      <div class="cart-title col-xs-6 col-xs-offset-3">
+        <h1>
+          Simple Shopping Cart
+        </h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="item-name col-xs-6">
+        Salmon
+      </div>
+      <div class="item-price col-xs-3">
+        $60.00
+      </div>
+      <div class="item-qty col-xs-3">
+        <label>QTY</label>
+        <input type="number" class="quantity">
+      </div>
+    </div>
+    <div class="row">
+      <div class="item-name col-xs-6">
+        Tuna
+      </div>
+      <div class="item-price col-xs-3">
+        $50.00
+      </div>
+      <div class="item-qty col-xs-3">
+        <label>QTY</label>
+        <input type="number" class="quantity">
+      </div>
+    </div>
+    <div class="row">
+      <div class="item-name col-xs-6">
+        Carp
+      </div>
+      <div class="item-price col-xs-3">
+        $40.00
+      </div>
+      <div class="item-qty col-xs-3">
+        <label>QTY</label>
+        <input type="number" class="quantity">
+      </div>
+    </div>
+    <div class="row">
+      <div class="item-name col-xs-6">
+        Pork
+      </div>
+      <div class="item-price col-xs-3">
+        $50.00
+      </div>
+      <div class="item-qty col-xs-3">
+        <label>QTY</label>
+        <input type="number" class="quantity">
+      </div>
+    </div>
+    <div class="row">
+      <div class="item-name col-xs-6">
+        Beef
+      </div>
+      <div class="item-price col-xs-3">
+        $40.00
+      </div>
+      <div class="item-qty col-xs-3">
+        <label>QTY</label>
+        <input type="number" class="quantity">
+      </div>
+    </div>
+    <div class="row">
+      <div class="item-name col-xs-6">
+        Chicken
+      </div>
+      <div class="item-price col-xs-3">
+        $25.00
+      </div>
+      <div class="item-qty col-xs-3">
+        <label>QTY</label>
+        <input type="number" class="quantity">
+      </div>
+    </div>
+    <div class="row">
+      <div class="item-name col-xs-6">
+        Cereal
+      </div>
+      <div class="item-price col-xs-3">
+        $45.00
+      </div>
+      <div class="item-qty col-xs-3">
+        <label>QTY</label>
+        <input type="number" class="quantity">
+      </div>
+    </div>
+    <div class="row">
+      <div class="item-name col-xs-6">
+        Milk
+      </div>
+      <div class="item-price col-xs-3">
+        $20.00
+      </div>
+      <div class="item-qty col-xs-3">
+        <label>QTY</label>
+        <input type="number" class="quantity">
+      </div>
+    </div>
+    <div class="row">
+      <div class="item-name col-xs-6">
+        Sugar
+      </div>
+      <div class="item-price col-xs-3">
+        $10.00
+      </div>
+      <div class="item-qty col-xs-3">
+        <label>QTY</label>
+        <input type="number" class="quantity">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3 col-xs-offset-9">
+        <button id="calc-prices-button" type="button" data-button='{"id": "3424"}' class="btn btn-success">
+          Calculate Prices
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4 col-xs-offset-4">
+        <h1 class="total-price-label">
+          Total Price:
+        </h1>
+        <div id="total-price">
+          $--.--
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- jQuery -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="js/shoppingCart.js"></script>
+</body>
+
+</html>

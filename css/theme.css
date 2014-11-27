@@ -1,0 +1,9 @@
+.inputCorrect {
+  border: 2px solid green;
+}
+.inputWrong {
+  border: 2px solid red;
+}
+.invalid {
+  color: red;
+}
