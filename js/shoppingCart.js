@@ -1,14 +1,18 @@
 $(document).ready(
-  function(){
+  function() {
+    $($($(".item-name:odd")).parent()).css("background-color", "#dddddd");
+    $($(".quantity:odd")).css("background-color", "#dddddd");
     $("button#calc-prices-button").click(
       function() {
         $('#total-price').html("$" + (shoppingCart.calcTotalPrice()).toFixed(2));
+        $("button#calc-prices-button").html('Calculated!');
       }
     );
-    $('.quantity').blur(
-      function (){
-        for (var index = 0; index < $('.quantity').length; index++){
-          if (this == $('.quantity')[index]){
+    $('.quantity').keyup(
+      function() {
+        $("button#calc-prices-button").html('Calculate Prices');
+        for (var index = 0; index < $('.quantity').length; index++) {
+          if (this == $('.quantity')[index]) {
             shoppingCart.judgeInputField(index);
           }
         }
@@ -65,11 +69,9 @@ var shoppingCart = {
     if (quantityNum > 0) {
       this.inputError.push(true);
       return quantityNum;
-    } 
-    else if (quantityNum == 0){
+    } else if (quantityNum == 0) {
       return 0;
-    }
-    else {
+    } else {
       this.inputError.push(false);
       return 0;
     }
@@ -79,12 +81,10 @@ var shoppingCart = {
     if (quantityNum > 0) {
       this.makeFieldGreen(index);
       return;
-    }
-    else if (quantityNum == 0) {
+    } else if (quantityNum == 0) {
       this.makeFieldNothing(index)
       return;
-    }
-    else {
+    } else {
       this.makeFieldRed(index);
       return;
     }
@@ -93,7 +93,7 @@ var shoppingCart = {
     $($('.quantity')[index]).parent().addClass('has-success');
     $($('.quantity')[index]).parent().removeClass('has-error');
   },
-  makeFieldNothing: function(index){
+  makeFieldNothing: function(index) {
     $($('.quantity')[index]).parent().removeClass('has-success');
     $($('.quantity')[index]).parent().removeClass('has-error');
   },
@@ -104,16 +104,16 @@ var shoppingCart = {
   inputError: [],
   alertUserInputError: function() {
     var hasNoError = true;
-    for (index in this.inputError){
-      if (this.inputError[index] == false){
+    for (index in this.inputError) {
+      if (this.inputError[index] == false) {
         hasNoError = false;
       }
     }
     if (hasNoError) {
-        $('#alert-message').addClass('hidden');
+      $('#alert-message').addClass('hidden');
     } else {
-        $('#alert-message').removeClass('hidden');
-        $('#alert-message').text(this.errorMessageAlert);
+      $('#alert-message').removeClass('hidden');
+      $('#alert-message').text(this.errorMessageAlert[0]);
     }
   },
   centToDollar: function(cent) {
