@@ -14,6 +14,10 @@ $(document).ready(
         for (var index = 0; index < $('.quantity').length; index++) {
           if (this == $('.quantity')[index]) {
             shoppingCart.judgeInputField(index);
+            $($('.item-subtotal')[index]).html(
+              "$" +
+              (shoppingCart.centToDollar(shoppingCart.calcSubtotal(index))).toFixed(2)
+            );
           }
         }
         $('#total-price').html("$" + (shoppingCart.calcTotalPrice()).toFixed(2));
@@ -37,6 +41,9 @@ var shoppingCart = {
   },
   calcItemPrice: function(index) {
     return this.cart[index].price * this.cart[index].quantity;
+  },
+  calcSubtotal: function(index) {
+    return this.getCleanItemPrice(index) * this.getCleanItemQuantity(index);
   },
   makeCart: function() {
     this.inputError = [];

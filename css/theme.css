@@ -19,7 +19,8 @@ div.row {
 }
 #total-price,
 .item-subtotal-title,
-.item-delete-title {
+.item-delete-title,
+.item-subtotal {
   text-align: right;
 }
 .cart-title,
