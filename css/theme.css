@@ -5,6 +5,13 @@ div.row {
   border-width: 2px;
   width: calc(100% - 35px);
 }
-.item-qty label, .item-qty input, .item-qty {
-  display:inline-block;
+.item-qty label,
+.item-qty input,
+.item-qty {
+  display: inline-block;
+}
+.total-price-label,
+#total-price,
+.cart-title {
+  text-align: center;
 }
