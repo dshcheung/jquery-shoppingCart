@@ -1,9 +1,10 @@
-.inputCorrect {
-  border: 2px solid green;
+div.row {
+  margin: 0 0 10px;
 }
-.inputWrong {
-  border: 2px solid red;
+.quantity {
+  border-width: 2px;
+  width: calc(100% - 35px);
 }
-.invalid {
-  color: red;
+.item-qty label, .item-qty input, .item-qty {
+  display:inline-block;
 }

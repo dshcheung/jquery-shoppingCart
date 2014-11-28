@@ -3,10 +3,10 @@ $("button#calc-prices-button").click(
     shoppingCart.makeCart();
     if (shoppingCart.alertUserInputError() == false) {
       $('#total-price').html("INVALID QUANTITY");
-      $('#total-price').addClass("invalid");
+      $('#total-price').parent().addClass("has-error");
     } else {
       $('#total-price').html(shoppingCart.calcTotalPrice());
-      $('#total-price').removeClass("invalid");
+      $('#total-price').parent().removeClass("has-error");
     }
   }
 );
@@ -60,13 +60,13 @@ var shoppingCart = {
     }
   },
   makeFieldGreen: function(index) {
-    $($('.quantity')[index]).addClass('inputCorrect');
-    $($('.quantity')[index]).removeClass('inputWrong');
+    $($('.quantity')[index]).parent().addClass('has-success');
+    $($('.quantity')[index]).parent().removeClass('has-error');
 
   },
   makeFieldRed: function(index) {
-    $($('.quantity')[index]).removeClass('inputCorrect');
-    $($('.quantity')[index]).addClass('inputWrong');
+    $($('.quantity')[index]).parent().removeClass('has-success');
+    $($('.quantity')[index]).parent().addClass('has-error');
   },
   inputError: [],
   alertUserInputError: function() {
