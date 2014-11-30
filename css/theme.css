@@ -1,4 +1,5 @@
-.item-table-row {
+.item-table-row,
+.item-add {
   padding: 10px 0;
   border-bottom: 2px solid black;
 }
@@ -9,14 +10,6 @@
   text-align: right;
   float: right;
 }
-.item-qty label,
-.item-qty input,
-.item-qty {
-  display: inline-block;
-}
-.total-price-label {
-  text-align: left;
-}
 .item-total-total,
 .item-subtotal-title,
 .item-delete-title,
@@ -25,27 +18,23 @@
 }
 .cart-title,
 .item-quantity-title,
-#alert-message {
+.alert-message {
   text-align: center;
 }
 .item-title {
   font-size: 30px;
 }
-.total-price-row {
+.item-total-row {
   padding: 0;
 }
-button.item-total-button {
-  margin-top: 22px;
-  margin-bottom: calc((69px - 34px)/2);
+.item-total-button {
+  margin: 22px 0;
 }
-button.item-delete-button {
+.item-delete-button {
   float: right;
 }
-div.item-name,
-div.item-price,
-div.item-subtotal {
+.item-name,
+.item-price,
+.item-subtotal {
   margin: 7px 0;
-}
-.item-add-list li {
-  text-align: 
 }

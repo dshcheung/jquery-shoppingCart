@@ -47,7 +47,7 @@
     </div><!-- item table C -->
 
     <div class="row item-add"><!-- item add S -->
-      <div class="col-xs-6">
+      <div class="col-xs-3">
         <select class="item-add-list form-control">
           <!-- option -->
         </select>
@@ -60,19 +60,21 @@
     </div><!-- item add C -->
 
     <div class="row item-total"><!-- item total S -->
-      <div class="col-xs-12">
+      <div class="col-xs-12 item-total-row">
         <h1 class="item-total-label col-xs-6">
           Total Price:
         </h1>
         <h1 class="item-total-total col-xs-4">
           $0.00
         </h1>
-        <button type="button" class="item-total-button btn btn-success col-xs-2">
-          Calculate Prices
-        </button>
+        <div class="col-xs-2">
+          <button type="button" class="item-total-button btn btn-success col-xs-12">
+            Calculate Prices
+          </button>
+        </div>
       </div>
       <div class="col-xs-12">
-        <div class="alert alert-danger hidden" id="alert-message" role="alert"></div>
+        <div class="alert alert-danger hidden alert-message"></div>
       </div>
     </div><!-- item total C -->
   </section>

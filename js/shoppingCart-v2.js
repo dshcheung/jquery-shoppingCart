@@ -29,6 +29,7 @@ $(document).ready(
         $(this).html('Calculated!');
       }
     );
+    //Delete Button
     $('.item-table').on("click", ".item-delete-button",
       function() {
         //Delete entire item div
@@ -58,8 +59,8 @@ var sCart = {
   putNewItem: function(sku, name, value) {
     $('.item-table').append(
       '<div class="item-table-row col-xs-12">' +
-      '<div class="item-name col-xs-3" data-sku=' + sku + ' data-name=' + name + '>' + name +'</div>' +
-      '<div class="item-price col-xs-2" data-value=' + value + '>$'+this.centToDollar(value).toFixed(2)+'</div>' +
+      '<div class="item-name col-xs-3" data-sku=' + sku + ' data-name=' + name + '>' + name + '</div>' +
+      '<div class="item-price col-xs-2" data-value=' + value + '>$' + this.centToDollar(value).toFixed(2) + '</div>' +
       '<div class="item-quantity col-xs-2">' +
       '<input value="0" placeholder="0" class="item-quantity-input form-control">' +
       '</div>' +
@@ -80,14 +81,12 @@ var sCart = {
       for (n in this.cart) {
         if (this.masterItemList[i].sku == this.cart[n].sku) {
           located = true;
-          console.log("test");
         }
       }
       if (located == false) {
         this.selectOption.push(this.masterItemList[i]);
       }
     }
-    console.log(this.selectOption);
     for (k in this.selectOption) {
       var sku = this.selectOption[k].sku;
       var name = this.selectOption[k].name;
@@ -95,6 +94,12 @@ var sCart = {
       $('.item-add-list').append('<option data-sku=' + sku + ' data-name=' + name +
         ' data-value=' + value + '>' + name + '</option>'
       )
+    }
+    if (this.selectOption.length == 0) {
+      $('.item-add-list').append('<option>No More Item to Add!</option>');
+      $('.item-add-button').attr('disabled', 'disabled');
+    } else {
+      $('.item-add-button').removeAttr('disabled');
     }
   },
   masterItemList: [{
@@ -174,7 +179,7 @@ var sCart = {
         name: $($('.item-name')[i]).data('name'),
         price: $($('.item-price')[i]).data('value'),
         sku: $($('.item-name')[i]).data('sku'),
-        quantity: this.getCleanItemQuantity(($($('.item-quantity-input')[i])))
+        quantity: $($('.item-quantity-input')[i]).val()
       };
       this.cart.push(itemObj);
     }
@@ -207,10 +212,10 @@ var sCart = {
       }
     }
     if (hasNoError) {
-      $('#alert-message').addClass('hidden');
+      $('.alert-message').addClass('hidden');
     } else {
-      $('#alert-message').removeClass('hidden');
-      $('#alert-message').text(this.errorMessageAlert[0]);
+      $('.alert-message').removeClass('hidden');
+      $('.alert-message').text(this.errorMessageAlert[0]);
     }
   },
   errorMessageAlert: ['We have ignore some of your values because they were invalid!']
