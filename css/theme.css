@@ -34,8 +34,18 @@ div.row {
 .total-price-row {
   padding: 0;
 }
-
-button {
+button#calc-prices-button {
   margin-top: 22px;
   margin-bottom: calc((69px - 34px)/2);
+}
+button.item-delete {
+  float: right;
+}
+div.item-name,
+div.item-price,
+div.item-subtotal {
+  margin: 7px 0;
+}
+.item-add-list li {
+  text-align: 
 }
