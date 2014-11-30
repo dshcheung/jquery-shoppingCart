@@ -17,7 +17,7 @@ div.row {
 .total-price-label {
   text-align: left;
 }
-#total-price,
+.item-total-total,
 .item-subtotal-title,
 .item-delete-title,
 .item-subtotal {
@@ -34,11 +34,11 @@ div.row {
 .total-price-row {
   padding: 0;
 }
-button#calc-prices-button {
+button.item-total-button {
   margin-top: 22px;
   margin-bottom: calc((69px - 34px)/2);
 }
-button.item-delete {
+button.item-delete-button {
   float: right;
 }
 div.item-name,
