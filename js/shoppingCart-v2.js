@@ -2,8 +2,10 @@ $(document).ready(
   function() {
     //set initial row background
     sCart.setBackground();
+    //set initial select tag input
+    sCart.updateSelectOption();
     //Auto update cart
-    $('.item-quantity-input').keyup(
+    $('.item-table').on("keyup", ".item-quantity-input",
       function() {
         //Reset text in item-total-button
         $(".item-total-button").html('Calculate Prices');
@@ -19,7 +21,7 @@ $(document).ready(
       }
     );
     //Calculate Button
-    $(".item-total-button").click(
+    $('.item-total').on("click", ".item-total-button",
       function() {
         //Update Total
         $('.item-total-total').html("$" + (sCart.calcTotalPrice()).toFixed(2));
@@ -27,27 +29,74 @@ $(document).ready(
         $(this).html('Calculated!');
       }
     );
-    //Delete Button
-    $('.item-delete-button').click(
+    $('.item-table').on("click", ".item-delete-button",
       function() {
         //Delete entire item div
         $(this).parent().parent().remove();
         //Reload row background
-        setBackground();
+        sCart.setBackground();
         //Update Total
         $('.item-total-total').html("$" + (sCart.calcTotalPrice()).toFixed(2));
+        sCart.updateSelectOption()
       }
     );
     //Add Button
-    $('.item-add-button').click(
+    $('.item-add').on("click", ".item-add-button",
       function() {
-        $('.item-add-list').val();
+        var sku = $('.item-add-list').find(":selected").data('sku');
+        var name = $('.item-add-list').find(":selected").data('name');
+        var value = $('.item-add-list').find(":selected").data('value');
+        sCart.putNewItem(sku, name, value);
+        sCart.updateSelectOption();
+        sCart.setBackground();
       }
     );
   }
 );
 
 var sCart = {
+  putNewItem: function(sku, name, value) {
+    $('.item-table').append(
+      '<div class="item-table-row col-xs-12">' +
+      '<div class="item-name col-xs-3" data-sku=' + sku + ' data-name=' + name + '>' + name +'</div>' +
+      '<div class="item-price col-xs-2" data-value=' + value + '>$'+this.centToDollar(value).toFixed(2)+'</div>' +
+      '<div class="item-quantity col-xs-2">' +
+      '<input value="0" placeholder="0" class="item-quantity-input form-control">' +
+      '</div>' +
+      '<div class="item-subtotal col-xs-3">$0.00</div>' +
+      '<div class="item-delete col-xs-2">' +
+      '<button type="button" class="item-delete-button btn btn-warning col-xs-6">Delete</button>' +
+      '</div>' +
+      '</div>'
+    );
+  },
+  updateSelectOption: function() {
+    this.makeCart();
+    this.selectOption = [];
+    $('.item-add-list').empty();
+    var located = false;
+    for (i in this.masterItemList) {
+      located = false;
+      for (n in this.cart) {
+        if (this.masterItemList[i].sku == this.cart[n].sku) {
+          located = true;
+          console.log("test");
+        }
+      }
+      if (located == false) {
+        this.selectOption.push(this.masterItemList[i]);
+      }
+    }
+    console.log(this.selectOption);
+    for (k in this.selectOption) {
+      var sku = this.selectOption[k].sku;
+      var name = this.selectOption[k].name;
+      var value = this.selectOption[k].price;
+      $('.item-add-list').append('<option data-sku=' + sku + ' data-name=' + name +
+        ' data-value=' + value + '>' + name + '</option>'
+      )
+    }
+  },
   masterItemList: [{
     name: "Salmon",
     price: 4000,
@@ -85,6 +134,7 @@ var sCart = {
     price: 4000,
     sku: "SDF72"
   }],
+  selectOption: [],
   cart: [],
   setBackground: function() {
     $($($(".item-name:even")).parent()).css("background-color", "white");
@@ -121,9 +171,9 @@ var sCart = {
     this.cart = [];
     for (var i = 0; i < $('.item-name').length; i++) {
       var itemObj = {
-        name: this.getCleanItemName($($('.item-name')[i])),
-        price: this.getCleanItemPrice(($($('.item-price')[i]))),
-        sku: $($('.item-name')[i]).val(),
+        name: $($('.item-name')[i]).data('name'),
+        price: $($('.item-price')[i]).data('value'),
+        sku: $($('.item-name')[i]).data('sku'),
         quantity: this.getCleanItemQuantity(($($('.item-quantity-input')[i])))
       };
       this.cart.push(itemObj);
@@ -131,25 +181,14 @@ var sCart = {
     this.alertUserInputError();
     return this.cart;
   },
+  calcSubtotal: function(itemObj, itemObj2) {
+    return itemObj2.data('value') * this.getCleanItemQuantity(itemObj);
+  },
   centToDollar: function(cent) {
     return cent / 100;
   },
-  calcSubtotal: function(itemObj, itemObj2) {
-    return this.getCleanItemPrice(itemObj2) * this.getCleanItemQuantity(itemObj);
-  },
-  getCleanItemName: function(itemObj) {
-    var name = $.trim($(itemObj).text());
-    return name;
-  },
-  getCleanItemPrice: function(itemObj) {
-    var priceCurDollarString = $.trim($(itemObj).text());
-    var priceJustDollarString = priceCurDollarString.split('$');
-    var priceDollarNum = parseFloat(priceJustDollarString[1]);
-    var priceCentNum = priceDollarNum * 100;
-    return priceCentNum;
-  },
   getCleanItemQuantity: function(itemObj) {
-    var quantityNum = $(itemObj).val();
+    var quantityNum = itemObj.val();
     if (quantityNum > 0) {
       return quantityNum;
     } else if (quantityNum == 0) {
