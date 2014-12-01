@@ -33,7 +33,7 @@ $(document).ready(
     $('.item-table').on("click", ".item-delete-button",
       function() {
         //Delete entire item div
-        $(this).parent().parent().fadeOut("slow", function(){
+        $(this).parent().parent().fadeOut("slow", function() {
           $(this).remove();
           $('.item-total-total').html("$" + (sCart.calcTotalPrice()).toFixed(2));
           sCart.updateSelectOption()
