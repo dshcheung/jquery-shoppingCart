@@ -33,12 +33,12 @@ $(document).ready(
     $('.item-table').on("click", ".item-delete-button",
       function() {
         //Delete entire item div
-        $(this).parent().parent().remove();
-        //Reload row background
-        sCart.setBackground();
-        //Update Total
-        $('.item-total-total').html("$" + (sCart.calcTotalPrice()).toFixed(2));
-        sCart.updateSelectOption()
+        $(this).parent().parent().fadeOut("slow", function(){
+          $(this).remove();
+          $('.item-total-total').html("$" + (sCart.calcTotalPrice()).toFixed(2));
+          sCart.updateSelectOption()
+          sCart.setBackground();
+        });
       }
     );
     //Add Button
@@ -70,6 +70,7 @@ var sCart = {
       '</div>' +
       '</div>'
     );
+    $('.item-table-row').fadeIn("slow");
   },
   updateSelectOption: function() {
     this.makeCart();
@@ -142,9 +143,9 @@ var sCart = {
   selectOption: [],
   cart: [],
   setBackground: function() {
-    $($($(".item-name:even")).parent()).css("background-color", "white");
-    $($(".item-quantity-input:even")).css("background-color", "white");
-    $($($(".item-name:odd")).parent()).css("background-color", "#dddddd");
+    $(".item-table-row:even").css("background-color", "#ffffff");
+    $($(".item-quantity-input:even")).css("background-color", "#ffffff");
+    $(".item-table-row:odd").css("background-color", "#dddddd");
     $($(".item-quantity-input:odd")).css("background-color", "#dddddd");
   },
   judgeInputField: function(itemObj) {

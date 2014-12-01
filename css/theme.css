@@ -38,3 +38,6 @@
 .item-subtotal {
   margin: 7px 0;
 }
+.item-table-row{
+  display:none;
+}
